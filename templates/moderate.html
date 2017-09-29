@@ -1,0 +1,72 @@
+{% extends "header.html" %}
+{% block body %}
+<head>
+
+  <script type="text/javascript">
+
+  function callserver(postid,status) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+             if (xmlhttp.status == 200) {
+                 //document.getElementById("j").innerHTML = xmlhttp.responseText;
+                //  alert(xmlhttp.responseText);
+                removepost(postid);
+             }
+             else if (xmlhttp.status == 400) {
+                alert('There was an error 400');
+             }
+          }
+      };
+
+      var data = String(status)+ "." + String(postid);
+      xmlhttp.open("POST", "{{url_for('isapproved')}}", true);
+      xmlhttp.send(data=data);
+
+}
+
+function removepost(postid){
+  document.getElementById(postid).style.display = "none";
+}
+
+  </script>
+</head>
+<span id="j" style="color: black"></span>
+<div class="container">
+
+      {% for post in posts %}
+            <div id={{post.postid}} style="display: block">
+                  <div class="row">
+                        <div class="col col-lg-8" style="background-color: red; height: 50px">
+                              {{post.postedby}}
+                        </div>
+                        <div class="col col-lg-4">
+                              <button class="btn btn-success" onclick="callserver({{post.postid}},-1)">Reject</button></a>
+                              <button class="btn btn-success" onclick="callserver({{post.postid}},1)">Approved</button></a>
+
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col col-lg-4" style="background-color: lightgreen; height: 150px">
+                              <img src="" height="150px;">
+                        </div>
+                        <div class="col col-lg-4" style="background-color: lightblue; height: 150px;">
+                              <div class="row">
+                                    <div class="col col-lg-12">
+                                          <b>{{post.title}}</b>
+                                    </div>
+                                    <div class="col col-lg-12">
+                                          {{post.shortdesc}}
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      {% endfor %}
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,416 @@
+
+
+#men {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+     position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    height: 50px;
+}
+#searchbox{
+	margin-right: 15px;
+}
+
+#logintext,#signuptext {
+	display: block;
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
+    color: white;
+}
+
+ #logintext:hover , #signuptext:hover{
+ 	cursor: pointer;
+ 	background-color: #111;
+    text-decoration: none;
+    color: white;
+ }
+
+ 
+#men li{
+	float: left;
+}
+
+#men .active {
+    background-color: #4CAF50;
+}
+#men li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#men #searchbox {
+	float: right;
+
+	margin-right: 15px;
+}
+
+
+#men li a:hover {
+    background-color: #111;
+    text-decoration: none;
+    color: white;
+}
+
+
+/* css for modal login form*/
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+/* Extra styles for the cancel button */
+.modal .modal-content .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 30%;
+    border-radius: 50%;
+}
+
+.modal .modal-content .container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+     /* Stay in place removed by shiva*/
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    /*height: 100%;*/ /* Full height */
+    overflow: scroll; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+.modal .modal-content button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+#loginid ,#signupid{
+	color:black;
+}
+.modal .modal-content .cancelbtnn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.modal .modal-content .cancelbtnn,.modal .modal-content .signupbtn {
+    float: left;
+    width: 50%;
+}
+
+
+
+
+
+
+
+.container-fluid .row{
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.container-fluid .row .col{
+	padding-left: 0px;
+	padding-right: 0px;
+
+}
+
+.container-fluid{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+
+.sidebar {
+		color: #999;
+	font-size: 1em;
+	text-align: center;
+}
+
+.btns{
+	border:none;
+	border-radius: 0;
+	width: 100%;
+}
+
+
+#thirddive{
+	position: fixed;
+}
+
+.sidebar h4 {
+	padding-bottom: 0;
+	font-size: 1.4em;
+	color: #555;
+	letter-spacing: -1px;
+	padding: 0;
+}
+
+.sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+
+.sidebar ul li {
+	margin-bottom: 20px;
+	line-height: 1.9em;
+	padding: 10px;
+}
+
+.sidebar ul li.bg, .sidebar ul li.bg h4, .sidebar ul li.bg a, .sidebar ul li.bg a:hover {
+	background-color: #699BBA;
+	color: #fff;
+}
+.sidebar ul li.bg a, .sidebar ul li.bg a:hover {
+	border-bottom-color: #fff;
+}
+
+
+.sidebar li ul {
+    list-style: none outside none;
+    margin: 0px;
+}
+
+.sidebar li ul li {
+	display: block;
+	border-top: none;
+	padding: 10px 2px;
+	margin: 0;
+	line-height: 1.5em;
+	font-size: 0.85em;
+}
+
+.sidebar li ul li ul {
+	margin-top: 10px;
+}
+
+.sidebar li ul li li  {
+	font-size: 1.0em;
+	padding-left: 15px;
+}
+
+
+
+.sidebar li ul li.text {
+	border-bottom: none;
+}
+
+
+
+.sidebar li a {
+
+	 border-bottom-color: #ccc;
+	color: #999;
+}
+
+
+.sidebar li a:hover {
+	background-color: #F5F5F5;
+
+
+}
+.sidebar li ul li a.readmore {
+   font-weight: bold;
+}
+
+
+.sidebar li.color-bg {
+	background-color: #f0f0f0;
+}
+
+.sidebar li.color-bg h4 {
+	color: #555;
+}
+
+.sidebar ul.blocklist li {
+	padding: 0;
+}
+
+.sidebar ul.blocklist li a,
+.sidebar ul.blocklist li a:hover {
+	border-bottom: 0;
+	display: block;
+
+	padding: 12px 10px;
+}
+
+.sidebar ul.blocklist li a.selected {
+	background:#699BBA;
+    color:white;
+	font-weight: bold;
+
+}
+.sidebar li ul.blocklist li li {
+	font-size: 1.0em;
+}
+
+.sidebar li ul.blocklist ul {
+	margin-top: 0;
+}
+
+.sidebar li ul.blocklist li li a,
+.sidebar li ul.blocklist li li a:hover {
+	padding-left: 25px;
+}
+
+
+.sidebar a:hover{
+		text-decoration: none;
+}
+
+body {
+  font-size: 16px;
+  color: black;
+  background-color: white;
+
+}
+ #posvaala{
+	margin-top: 0px; background: #D24D57; text-align: center;color: white; padding-top: 11px;padding-bottom: 11px;font-size: 1.3em
+}
+#po  ,#po:hover{
+	color: white;
+	text-decoration: none;
+}
+
+
+
+.panel-footer {
+  margin-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  background-color: #222;
+  border-top: 0;
+}
+
+#hours, #address {
+  line-height: 2;
+}
+#hours > span, #address > span {
+  font-size: 1.3em;
+}
+
+#address p {
+  color: #557c3e;
+  font-size: .8em;
+  line-height: 1.8;
+}
+#testimonials {
+  font-style: italic;
+}
+#testimonials  {
+  margin-top: 10px;
+}
+.text-center{
+	margin-top: 25px;
+}
+
+
+
+
+
+/* media query staart*/
+
+/*large devices*/
+@media (min-width: 1200px) {
+
+.container {
+    width: 100%;
+}
+	}
+
+/********** Medium devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+
+@media (max-width: 767px) {
+
+  }
+}

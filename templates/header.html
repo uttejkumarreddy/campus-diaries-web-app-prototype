@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Campus Diaries!</title>
+	<link rel="stylesheet" href="\static\css\bootstrap.min.css">
+    <link rel="stylesheet" href="\static\css\styles.css">
+    <script src="js\bootstrap.js"></script>
+</head>
+
+<body>
+<ul id="men">
+
+  <li style="margin-left: 0px;" class="active"><a href="{{url_for('mainpage')}}"><b>Campus Diaries</b></a></li>
+  <li ><a href="index.html">About</a></li>
+
+
+          {% if session.logged_in %}
+            <li style="float: right;"><a href="{{url_for('logout')}}">Logout</a></li>
+                {% if session.rank == 1 %}
+                    <li style="float: right;"><a href="{{url_for('moderate')}}">Moderate</a></li>
+                {% endif %}
+
+                {% if session.rank == 2 %}
+                	<li style="float: right;"><a href="{{url_for('makemoderator')}}">Promote</a></li><li style="float: right;"><a href="{{url_for('moderate')}}">Moderate</a></li>
+                {% endif %}}
+            <li style="float: right;"><a href="#">{{session.user_name}}</a></li>
+           {% else %}
+          <li style="float: right;" onclick="document.getElementById('loginid').style.display = 'block'" id="logintext">Log In</li>
+          <li style="float: right;"><a href="{{url_for('registrationPage')}}">Sign Up</a></li>
+
+          
+          <li id="searchbox" style="float: left;margin-left: 300px" ><form class="form-inline my-2 my-lg-0">
+          {% endif %}
+
+              <input class="form-control mr-sm-2" type="text" style="width: 300px" placeholder="Will best implemented" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: black">  Search</button>
+   </form></li>
+</ul>
+<div style="width: 100%;height: 50px"></div>
+
+
+
+
+<div id="loginid" class="modal">
+
+  <form class="modal-content animate" action="{{url_for('login')}}" method="Post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('loginid').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="#" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+
+      <label><b>Roll Number</b></label>
+      <input type="number" placeholder="eg. 160209733114" name="rollno" required>
+
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <button type="submit">Login</button>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('loginid').style.display='none'" class="cancelbtn">Cancel</button>
+
+    </div>
+  </form>
+</div>
+
+{% block body %}{% endblock %}
+
+</body>
