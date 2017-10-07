@@ -1,55 +1,56 @@
+<!-- extends the header.html -->
 {% extends "header.html" %}
+
+<!-- insert code in the block body of header.html -->
 {% block body %}
 
+	<!-- scripts for the page -->
+	<script type="text/javascript">
 
-  <script type="text/javascript">
+		// makemod function which takes the userid or rollnumber as input, sends to server to make that person as moderator. Then removes the user details from the page.
+		function makemod(userid) {
+		    var xmlhttp = new XMLHttpRequest();
+		    xmlhttp.onreadystatechange = function() {
+			    if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+			        if (xmlhttp.status == 200) {
+			        //document.getElementById("j").innerHTML = xmlhttp.responseText;
+				    //  alert(xmlhttp.responseText);
+			        sample_string = String(userid);
+			        console.log(typeof(sample_string));
+			        removeuser(sample_string);
+			        }
+			        else if (xmlhttp.status == 400) {
+			        alert('There was an error 400');
+			        }
+			    }
+			};
+		    var data = String(userid);
+		    xmlhttp.open("POST", "{{url_for('ismoderated')}}", true);
+		    xmlhttp.send(data=data);
+		}
 
-  function makemod(userid) {
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-             if (xmlhttp.status == 200) {
-                 //document.getElementById("j").innerHTML = xmlhttp.responseText;
-                //  alert(xmlhttp.responseText);
-                removeuser(userid);
-             }
-             else if (xmlhttp.status == 400) {
-                alert('There was an error 400');
-             }
-          }
-      };
+		// removes the html content of the user by taking userid as input
+		function removeuser(userid){
+		  	document.getElementById(String(userid)).style.display = "none";
+		}
+  	</script>
+  	<!-- end of scripts for the page -->
 
-      var data = String(userid);
-      xmlhttp.open("POST", "{{url_for('ismoderated')}}", true);
-      xmlhttp.send(data=data);
+  	<!-- html code for the users information to be displayed. (The users to be made moderators) -->
+	<div class="container">
+		<!-- start for loop of data given from server -->
+    	{% for user in users %}
 
-}
+    		<!-- html code for user info -->
+      		<div id={{user.rollnumber}} style="display: block;">
+            	Username: {{user.uname}} Roll Number:{{user.rollnumber}}<button style="margin-left: 30px;margin-top: 10px" class="btn btn-success" onclick="makemod({{user.rollnumber}})">Make Moderator</button>
+	            <hr class="divider">
+    		</div>
+    		<!-- end the html for users -->
+		<!-- End for loop -->
+      	{% endfor %}
+    <!-- end container for the posts -->
+	</div>
 
-function removeuser(userid){
-  document.getElementById(userid).style.display = "none";
-}
-
-
-
-
-  </script>
-
-<div class="container">
-
-      {% for user in users %}
-      <div id={{user.rollnumber}} style="display: block">
-            <p>Username: {{user.username}} Roll Number:{{user.rollnumber}}</p><button class="btn btn-success" onclick="makemod({{user.rollnumber}})">Make Moderator</button>
-            <hr>
-      </div>
-      {% endfor %}
-</div>
-
-
-
-
-
-
-
-
-
+<!-- end the block body -->
 {% endblock %}

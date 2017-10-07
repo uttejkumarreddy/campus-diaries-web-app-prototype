@@ -1,36 +1,81 @@
+<!-- inherits from header.html and puts the entire code in between block body -->
 {% extends "header.html" %}
+
+<!-- start block body of index.html -->
 {% block body %}
 
+	<!-- putting entire page into three columns.This is a container fluid -->
 	<div class="container-fluid">
 
+		<!-- In a single row, -->
 		<div class="row">
-    		<div class="col col-lg-2">
-    			 {% if session.logged_in %}
-           <a id="po" href="{{url_for('newpost')}}"  ><div id="posvaala">Post</div></a>
-            {% endif %}
-      			<aside class="sidebar big-sidebar ">
 
+			<!-- i am dividing it into three parts. 2col,8col,2col -->
+    		<div class="col col-lg-2" >
 
-	           	 	<ul>
-	               		<li class="color-bg">
-	                    	<ul class="blocklist">
+    			<!-- Inside the first div, which occupies two columsn space.In this we have code for post button and clubs names -->
+            	<div id="posit" style="position: fixed; width: 16.66%;">
+            	
+            		<!-- show "post" button only iff the user is logged in. Using jinja logic ffor the same" -->
+            		{% if session.logged_in %}
+    
+            		<!-- jinja logic to check if user is logged in or not -->
+                    <a id="po" href="{{url_for('newpost')}}"  ><div id="posvaala">Post</div></a>
+                    {% endif %}
+                    <!-- post button code ends -->
 
-	                        	<li><a class="selected" href="index.html">Techno</a></li>
-	                        	<li><a href="#">Toast Masters</a>
-								<li><a href="#">Photography</a></li>
-								<li><a href="one-column.html">Swayam</a></li>
-								<li><a href="text.html">Kriti Arts</a></li>
-								<li><a href="three-column.html">Physics</a></li>
-	                   	    	<li><a href="#">Maths</a></li>
-	                        	<li><a href="#">Chemistry</a></li>
-	                    	</ul>
-	                	</li>
-	                </ul>
-                </aside>
+                    <!-- club lists html code starts -->
+                    <!-- just to separate the list from the post buttons -->
+                  	<aside class="sidebar big-sidebar " style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;" >
+                  		<!-- The club list is an unordered list -->
+            	        <ul>
+            	           	<li class="color-bg">
+            	               	<ul class="blocklist">
 
+            	               		<!-- Clubs names are written here -->
+            	                    <li><a class="selected" href="index.html">Techno</a></li>
+            	                  	<li><a href="#">Toast Masters</a>
+            						<li><a href="#">Photography</a></li>
+            						<li><a href="one-column.html">Swayam</a></li>
+            						<li><a href="text.html">Kriti Arts</a></li>
+            						<li><a href="three-column.html">Physics</a></li>
+            	                	<li><a href="#">Maths</a></li>
+            	                   	<li><a href="#">Chemistry</a></li>
+            	                   	<!-- end of club names -->
+            	               	</ul>
+            	           	</li>
+                        </ul>
+                    </aside>
+                    <!-- end of club list html code -->
+                </div>
+                <!-- end of the container in whch we have post button as well as clubs. This container is position fixed -->
     		</div>
+    		<!-- end of code for first div. first div contains post button and club names -->
+    		
+
+    		<!-- start of the middle div which has the code for the posts. -->
     		<div class="col col-lg-8" >
 
+    			<!-- start for loop to print posts -->
+            	{% for post in posts %}
+
+            		
+              <div class="item row" style="background-color: white;margin-top: 10px;padding-bottom: 10px;border-radius: 10px;margin-left: 10px;margin-right: 10px;border-color: black;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                <a class="col-lg-12" style="padding-top: 10px;padding-bottom: 10px" href="#">{{post.postedby}}</a>
+                                <hr class="col-lg-12" style="border-color:#dae3e7;margin-top: 0px; margin-bottom: 10px ;">
+                                
+                                <a class="col-md-4 col-sm-4 col-xs-12" style="border-right: 1px" href="#" >
+                                <img class="img-responsive project-image" height="250px" width="250px" src="{{url_for('send_image', filename = post.postpic )}}"/>
+                                </a>
+                                <div class="desc col-md-8 col-sm-8 col-xs-12">
+                                    <h3 class="title"><a href="#">{{post.title}}</a></h3>
+                                    <p>{{post.shortdesc}}</p>
+                                    <p><a class="more-link" href="#"><i class="fa fa-external-link"></i> Find out more</a></p>
+                                </div><!--//desc-->
+
+                            </div><!--//item-->
+                            <!-- <hr class="divider" style="margin-top: 0px;margin-bottom: 0px;border-color: #dae3e7;height: 10px" /> -->
+                            
 
 
 
@@ -38,71 +83,57 @@
 
 
 
-      				posts will appear here..
-      				The values sent from the server are {{session.user_id}} and {{session.user_name}} and {{session.user_rank}}
-
-
-
-      				<br><br><br><br>
-      				did four brs
-
-              {% for post in posts %}
-      				<div class="row">
-      					<div class="col col-lg-12" style="background-color: pink; height: 50px">
-      						{{post.postedby}}
-      					</div>
-      				</div>
-      				<div class="row">
-      					<div class="col col-lg-6" style="background-color: red; height: 150px">
-      						<img src="{{url_for('send_image', filename = post.postpic )}}" >
-
-      					</div>
-      					<div class="col col-lg-6" style="background-color: blue; height: 150px;">
-      					  <div class="row">
-                    <div class="col col-lg-12">
-                      <b>{{post.title}}</b>
-                    </div>
-                    <div class="col col-lg-12">
-                      {{post.shortdesc}}
-                    </div>
-                  </div>
-      					</div>
-      				</div>
-              {% endfor %}
 
 
 
 
 
+
+
+
+
+
+
+
+				<!-- End for loop -->
+              	{% endfor %}
+
+            <!-- end of middle div (which has post ka html) -->
        		</div>
+
+       		<!-- start of third div html. Occupies two columns space -->
 			<div class="col col-lg-2">
-				<div style="background-color: lightblue;height: 500px;float: right;height: 500px;width: 100%">
-		   		inside third div<br>second line
+				<!-- content of the third div -->
+				<div style="background-color: lightblue;height: 500px;float: right;position: fixed; height: 500px;width: 100%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+		   			inside third div<br>second line
 		   		</div>
+		   		<!-- end of content in third div -->
+
+		   	<!-- End of third div -->
 	     	</div>
+
+	    <!-- end of entire intital row -->
   		</div>
+
+  	<!-- end of entire bootstrap grid -->
 	</div>
 
 
 
 
+	<!-- some scripts -->
+	<script>
+		// get modal
+		var l = document.getElementById('loginid');
 
-<script>
-// Get the modal
-var l = document.getElementById('loginid');
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		    if (event.target == l) {
+		        l.style.display = "none";
+		    }
+		}
+	</script>
+	<!-- end of scripts fr the page -->
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == l) {
-        l.style.display = "none";
-    }
-}
-
-function closeflashcontent()
-{
-  getElementById('flashcontent').style.display = "none";
-}
-</script>
-
-
+<!-- End of block body and all this code is kept inside the header.html -->
 {% endblock %}

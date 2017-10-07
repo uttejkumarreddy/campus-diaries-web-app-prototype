@@ -1,7 +1,20 @@
 {% extends "header.html" %}
 {% block body %}
+<style >
+      input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button,input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+body{
+      overflow-x: hidden;
+}
+</style>
 
-
+<div class="row">
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
 <form action="{{url_for('newpost')}}" method="Post" enctype="multipart/form-data">
 
 
@@ -9,45 +22,48 @@
 
       <label><b>Post title</b></label>
       <input type="text" style="color: black;" placeholder="Enter post title" name="title" required>
-      <hr>
-      <br>
-
-      <label><b>start date</b></label>
-      <input type="Date" style="color: black;" name="startdate" required>
-
-      <label><b>end date</b></label>
-      <input type="Date" style="color: black;" name="enddate" required>
+      <!-- <hr style="margin-bottom: 0px;margin-top: 0px"> -->
+      
 
       <label><b>Short Description</b></label>
       <input type="text" style="color: black;" placeholder="Enter short description" name="shortdes" required>
-      <hr>
-      <br>
+      <!-- <hr style="margin-bottom: 0px;margin-top: 0px"> -->
+      
 
       <label><b>Long description</b></label>
       <input type="text" style="color: black;" placeholder="Enter long description" name="longdes" required>
-      <hr>
-      <br>
+      <!-- <hr style="margin-bottom: 0px;margin-top: 0px"> -->
 
-      <label><b>Contact number</b></label>
-      <input type="text" style="color: black;" placeholder="Enter contact" name="contact" required>
-      <hr>
+      <label><b>Contact number</b></label> <br>
+      <input type="number" style="color: black;" placeholder="Enter contact" name="contact" required>
       <br>
+      <!-- <hr style="margin-bottom: 0px;margin-top: 0px"> -->
+      
 
-      <label><b>Select club</b></label>
+      <label><b>start date</b></label><br>
+      <input type="Date" style="color: black;" name="startdate" required>
+<br>
+      <label><b>end date</b></label><br>
+      <input type="Date" style="color: black;" name="enddate" required><br>
+
+
+
+      <label><b>Select club</b></label><br>
       <select name="club">
     <option value="misc">misc</option>
     <option value="club1">club2</option>
     <option value="club1">club3</option>
     <option value="club3">club4</option>
-  </select>
+  </select><br>
 
        <label><b>Upload Image</b></label>
       <input type="file" id="postimage" name="file">
-      <hr>
+      <hr style="margin-bottom: 0px;margin-top: 0px">
       <br>
 
 
       <input type="submit" value = "Submit">
 </form>
-
+</div>
+</div>
 {% endblock %}

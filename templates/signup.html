@@ -1,31 +1,84 @@
 {% extends "header.html" %}
 {% block body %}
+<style >
+      input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button,input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+body{
+      overflow-x: hidden;
+}
+</style>
+<div class="row">
+      <div class="col-lg-3"></div>
+            <div class="col-lg-6" style="background-color: #DAF7A6;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 10px;margin-top: 10px;margin-bottom: 10px;">
 
+                  <form class="form-horizontal" action="{{url_for('registrationPage')}}" method="POST">
+                    <fieldset>
+                      <h1>Sign Up Form</h1>
+                      <div class="control-group">
+                        <!-- Username -->
+                        <label class="control-label"  for="username"><h4>Username</h4></label>
+                        <div class="controls">
+                          <input type="text" id="username" name="username" placeholder="Enter your Username" class="input-xlarge" required>
+                          
+                        </div>
+                      </div>
+                   
+                      <div class="control-group">
+                        <!-- E-mail -->
+                        <label class="control-label" for="email"><h4>E-mail</h4></label>
+                        <div class="controls">
+                          <input type="text" id="email" name="email" placeholder="Enter your Email Address" class="input-xlarge" required>
+                        </div>
+                      </div>
+                   
+                      <div class="control-group">
+                        <!-- Password-->
+                        <label class="control-label" for="password"><h4>Password</h4></label>
+                        <div class="controls">
+                          <input type="password" id="password" name="psw" placeholder="Enter Password" class="input-xlarge" required>
+                        </div>
+                      </div>
+                   
+                      <div class="control-group">
+                        <!-- Password -->
+                        <label class="control-label"  for="password_confirm"><h4>Password (Confirm)</h4></label>
+                        <div class="controls">
+                          <input type="password" id="password_confirm" name="confirm" placeholder="Re-enter your password" class="input-xlarge" required>
+                          
+                        </div>
+                      </div>
 
-<form action="{{url_for('registrationPage')}}" method="Post">
+                      <div class="control-group">
+                        <!-- E-mail -->
+                        <label class="control-label" for="rollnumber"><h4>Roll Number</h4></label>
+                        <div class="controls">
+                          <input type="Number" id="rollnumber" name="rollno" placeholder="eg:160215733114" class="input-xlarge" required>
+                        </div>
+                      </div>
 
-
-      <h1>Sign Up form</h1>
-
-      <label><b>Username</b></label>
-      <input type="text" style="color: black;" placeholder="Enter username" name="username" required>
-
-      <label><b>Email</b></label>
-      <input type="email" style="color: black;" placeholder="Enter Email" name="email" required>
-
-      <label><b>Password</b></label>
-      <input type="password" style="color: black;" placeholder="Enter Password" name="psw" required>
-
-      <label><b>Repeat Password</b></label>
-      <input type="password" style="color: black;" placeholder="Repeat Password" name="confirm" required>
-
-       <label><b>Roll Number</b></label>
-      <input type="number" style="color: black;" placeholder="eg: 160215733114" name="rollno" required>
-
-      <label><b>Enter Date of birth</b></label>
-      <input type="Date" style="color: black;" name="dob" required>
-
-      <input type="submit" value = "Submit"> 
+                      <div class="control-group">
+                        <!-- E-mail -->
+                        <label class="control-label" for="dob"><h4>Date of Birth</h4></label>
+                        <div class="controls">
+                          <input type="Date" id="dob" name="dob" placeholder="Enter your date of birth" class="input-xlarge" required>
+                        </div>
+                      </div>
+                   
+                      <!-- div class="control-group">
+                        <!-- Button -->
+<!--                         <div class="controls" style="margin-top: 15px;margin-bottom: 10px">
+                          <button class="btn btn-success" type="submit" value=""></button>
+                        </div>
+                      </div> -->
+ <input type="submit" value = "Submit" class="btn btn-success" style="margin-top: 10px;margin-bottom: 10px;text-align: center;;"> 
+                    </fieldset>
 </form>
+             </div>     
+             <div class="col-lg-3"></div>
 
+</div>
 {% endblock %}

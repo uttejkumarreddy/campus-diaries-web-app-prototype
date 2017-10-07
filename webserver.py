@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
 from sqlalchemy import create_engine #Creating a engine to load database
 from sqlalchemy.orm import sessionmaker #Creating a session to access data
@@ -40,6 +39,8 @@ def allowed_file(filename):
 def mainpage():
     #getting posts
     posts = dbsession.query(Posts).filter_by(modstatus = 1).all()
+    #reversing posts order
+    posts = reversed(posts)
     #sending posts
     return render_template('index.html', posts = posts)
 
@@ -156,6 +157,10 @@ def newpost():
         longdesc  = request.form['longdes']
         contact   = request.form['contact']
         club      = request.form['club']
+
+    #initialising postpic
+        postpic = "D:\Workspaces\Campus Diaries\static\images\noimage.png"
+        
     #taking image
         if 'file' not in request.files:
             pass

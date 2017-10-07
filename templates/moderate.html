@@ -1,72 +1,94 @@
+<!-- extends header.html -->
 {% extends "header.html" %}
+
+<!-- start of block body -->
 {% block body %}
-<head>
 
-  <script type="text/javascript">
+	<!-- head space for scripts -->
+	<head>
 
-  function callserver(postid,status) {
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-             if (xmlhttp.status == 200) {
-                 //document.getElementById("j").innerHTML = xmlhttp.responseText;
-                //  alert(xmlhttp.responseText);
-                removepost(postid);
-             }
-             else if (xmlhttp.status == 400) {
-                alert('There was an error 400');
-             }
-          }
-      };
+		<!-- some scripts for the page -->
+		<script type="text/javascript">
 
-      var data = String(status)+ "." + String(postid);
-      xmlhttp.open("POST", "{{url_for('isapproved')}}", true);
-      xmlhttp.send(data=data);
+		// function callserver which takes postid and status (-1,1,0) as input and sends these two values to the server to update the database about the status of the posts. Then it also removes the posts from the page.
+		function callserver(postid,status) {
+		    var xmlhttp = new XMLHttpRequest();
+		    xmlhttp.onreadystatechange = function() {
+		    if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+		    	if (xmlhttp.status == 200) {
+		    		// run the removepost() function after recieving response from server.
+		      	removepost(postid);
+		    	}
+		    	else if (xmlhttp.status == 400) {
+		      		alert('There was an error 400');
+		    	}
+		  	}
+		};
+		var data = String(status)+ "." + String(postid);
+		xmlhttp.open("POST", "{{url_for('isapproved')}}", true);
+		xmlhttp.send(data=data);
+		}
 
-}
+		// remove the post from the page
+		function removepost(postid){
+		  document.getElementById(postid).style.display = "none";
+		}
 
-function removepost(postid){
-  document.getElementById(postid).style.display = "none";
-}
+		</script>
+		<!-- end of script space -->
 
-  </script>
-</head>
-<span id="j" style="color: black"></span>
-<div class="container">
+	</head>
+	<!-- end of head space -->
 
-      {% for post in posts %}
-            <div id={{post.postid}} style="display: block">
-                  <div class="row">
-                        <div class="col col-lg-8" style="background-color: red; height: 50px">
-                              {{post.postedby}}
-                        </div>
-                        <div class="col col-lg-4">
-                              <button class="btn btn-success" onclick="callserver({{post.postid}},-1)">Reject</button></a>
-                              <button class="btn btn-success" onclick="callserver({{post.postid}},1)">Approved</button></a>
-
-                        </div>
-                  </div>
-                  <div class="row">
-                        <div class="col col-lg-4" style="background-color: lightgreen; height: 150px">
-                              <img src="" height="150px;">
-                        </div>
-                        <div class="col col-lg-4" style="background-color: lightblue; height: 150px;">
-                              <div class="row">
-                                    <div class="col col-lg-12">
-                                          <b>{{post.title}}</b>
-                                    </div>
-                                    <div class="col col-lg-12">
-                                          {{post.shortdesc}}
-                                    </div>
-                              </div>
-                        </div>
-                  </div>
-            </div>
-      {% endfor %}
+	<!-- start of body space actyally -->
+	
 
 
-</div>
+	<!-- Container for all the posts coming from server -->
+	<div class="container">
 
+		<!-- start of for loop for the posts -->
+	    {% for post in posts %}
+	    <!-- same style which we follow in index.html.here the element if of all the posts is the post id itself given dynamically. see for yourself to believe.  -->
 
+      		<!-- entire post is kept in div with id equal to postid -->
+      		<div id={{post.postid}} class="row" style="display: block;">
+      		<div class="col-lg-3"></div>
+            	<div class="item row col-lg-6" style="background-color: white;margin-top: 10px;padding-bottom: 10px;border-radius: 10px;margin-left: 10px;margin-right: 10px;border-color: black;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="row"> <a class="col-lg-12" style="padding-top: 10px;padding-bottom: 10px" href="#">{{post.postedby}}</a>
+                    
+                    </div>
+                    <hr style="border-color:#dae3e7;margin-top: 0px; margin-bottom: 10px ">
+                    <div class="row">
+                        <a class="col-md-3 col-sm-3 col-xs-12" href="#" >
+                            <img class="img-responsive project-image" height="100px" width="100px" src="{{url_for('send_image', filename = post.postpic )}}"/>
+                        </a>
+                        <div class="desc col-md-9 col-sm-9 col-xs-12">
+                            <h3 class="title"><a href="#">{{post.title}}</a></h3>
+                            <p>{{post.shortdesc}}</p>
+                    	    <p><a class="more-link" href="#"><i class="fa fa-external-link"></i> Find out more</a></p>    
+                    	</div>
+                    </div><!--//desc-->
+	            
+	           		<div class="col col-lg-12" style="margin-top: 20px;text-align: center;">
+	           		<hr style="border-color:#dae3e7;margin-top: 0px; ">
+	               		     <button class="btn btn-danger" onclick="callserver({{post.postid}},-1)">	Reject</button>
+	                    	<button class="btn btn-success" style="margin-left: 20px" onclick="callserver({{post.postid}},1)">		Approved</button>
+              		</div>
+              		<hr class="divider" style="margin-top: 10px; margin-bottom: 10px">
+                </div>
+       		
+			
+			
+	    	</div>
+
+	    	
+	    	        
+        
+	        <!-- end of the for loop -->
+		{% endfor %}
+
+	<!-- end of the container class -->
+	</div>
 
 {% endblock %}

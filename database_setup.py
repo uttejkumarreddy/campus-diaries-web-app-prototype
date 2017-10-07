@@ -42,5 +42,18 @@ class Posts(Base):
     contact    = Column(Integer, nullable = True)
     modstatus  = Column(Integer, unique = False, default = 0)
 
+    @property
+    def serialize(self):
+        return{
+            'postedby':self.postedby,
+            'club':self.club,
+            'title':self.title,
+            'shortdesc':self.shortdesc,
+            'startdate':self.startdate,
+            'enddate':self.enddate,
+            'postpic':self.postpic,
+            'contact':self.contact,
+    }
+
 engine = create_engine('sqlite:///campusdiaries.db')
 Base.metadata.create_all(engine)
