@@ -7,4 +7,4 @@ Frontend : HTML, CSS, JavaScript, BootStrap, Jinja
 
 This project is halted as of now.
 
-The whole project is being done in Django, the code of which will be put up soon.
+The whole project is being re-done using Django, the code of which will be put up soon.
